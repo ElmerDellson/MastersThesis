@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{67bebf86-9539-4f7f-b9e9-a376519ec1f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{954a8f61-1c3e-419b-baca-c5e2b83c689a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{09095d68-bcd7-45c4-b007-5c8ddb5d60a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{8b0cb0c9-e0d8-4107-91c8-11654fac88e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="d3dx12.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSampleHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thesis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DXRHelper.h" />
+    <ClInclude Include="nv_helpers_dx12\BottomLevelASGenerator.h" />
+    <ClInclude Include="nv_helpers_dx12\RaytracingPipelineGenerator.h" />
+    <ClInclude Include="nv_helpers_dx12\RootSignatureGenerator.h" />
+    <ClInclude Include="nv_helpers_dx12\ShaderBindingTableGenerator.h" />
+    <ClInclude Include="nv_helpers_dx12\TopLevelASGenerator.h" />
+    <ClInclude Include="manipulator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DXSample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thesis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nv_helpers_dx12\BottomLevelASGenerator.cpp" />
+    <ClCompile Include="nv_helpers_dx12\RaytracingPipelineGenerator.cpp" />
+    <ClCompile Include="nv_helpers_dx12\RootSignatureGenerator.cpp" />
+    <ClCompile Include="nv_helpers_dx12\ShaderBindingTableGenerator.cpp" />
+    <ClCompile Include="nv_helpers_dx12\TopLevelASGenerator.cpp" />
+    <ClCompile Include="manipulator.cpp" />
+    <ClCompile Include="AddGeometry.cpp" />
+    <ClCompile Include="CopyRTOutputToRenderTarget.cpp" />
+    <ClCompile Include="CreateShaderRootSignatures.cpp" />
+    <ClCompile Include="DX12Boilerplate.cpp" />
+    <ClCompile Include="CreateAccelerationStructures.cpp" />
+    <ClCompile Include="CreateBuffers.cpp" />
+    <ClCompile Include="CreateCubeVB.cpp" />
+    <ClCompile Include="CreateIndexedPlanesVB.cpp" />
+    <ClCompile Include="CreateProbeMarkerVB.cpp" />
+    <ClCompile Include="CreateRaytracingPipeline.cpp" />
+    <ClCompile Include="CreateShaderBindingTable.cpp" />
+    <ClCompile Include="CreateShaderDescriptorHeap.cpp" />
+    <ClCompile Include="HandleAnimation.cpp" />
+    <ClCompile Include="HandleReadbackBuffers.cpp" />
+    <ClCompile Include="HandleUserInput.cpp" />
+    <ClCompile Include="LoadComputePipeline.cpp" />
+    <ClCompile Include="LoadGraphicsPipeline.cpp" />
+    <ClCompile Include="RecordComputeCommands.cpp" />
+    <ClCompile Include="RecordGraphicsCommands.cpp" />
+    <ClCompile Include="SetSettings.cpp" />
+    <ClCompile Include="UpdateBuffers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="shaders.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common.hlsl" />
+    <None Include="Hit.hlsl" />
+    <None Include="Miss.hlsl" />
+    <None Include="RayGen.hlsl" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ShadowRay.hlsl" />
+    <FxCompile Include="ProbeHit.hlsl" />
+    <FxCompile Include="ComputeShader.hlsl" />
+  </ItemGroup>
+</Project>

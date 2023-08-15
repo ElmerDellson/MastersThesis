@@ -1,0 +1,96 @@
+path_directory = 'timings';
+original_files = dir([path_directory '/*.csv']);
+
+fig = figure;
+hold on;
+title("All Configurations ");
+set(fig, 'units', 'points', 'position', [100, 100, 700, 350]);
+xlabel("Frame Nr.");
+ylabel('Time (ms)');
+set(fig, 'Units', 'Inches');
+titleStrings = string.empty;
+
+for i=1:length(original_files)
+    inputFileName = [path_directory '/' original_files(i).name];
+    data = readtable(inputFileName);
+    titleString = data.Properties.VariableDescriptions(4);
+    titleString = strrep(titleString, "_", " ");
+
+    titleSecondHalf = strsplit(titleString, '-');
+    
+    for j=2:length(titleSecondHalf)
+        
+    end
+
+    titleString = titleSecondHalf(1) + titleSecondHalf(3)
+    
+    frameNr = data{10:end, "FrameNr_"};
+    computeTimes = data{10:end, "Compute"};
+
+    plot(frameNr, computeTimes, 'DisplayName',[titleString]);
+end
+
+legend('AutoUpdate','off');
+beginLine = xline(200, '--', {'Animation begin'});
+beginLine.LabelHorizontalAlignment = 'left';
+xline(350, '--', {'Animation end'});
+
+pos = get(fig, 'Position');
+set(fig, 'PaperPositionMode', 'Auto', 'PaperUnits', 'Inches', 'PaperSize', [pos(3), pos(4)]);
+fileName = "../report/Figures/All_Configurations.pdf";
+% print(fig, fileName, '-dpdf', '-r0');
+
+
+% set(fig, 'units', 'points', 'position', [500, 500, 700, 350]);
+% titleStringWithSpaces = strrep(titleString, "_", " ");
+% title(titleStringWithSpaces);
+% 
+% xlabel(xlab);
+% ylabel('Time (ms)');
+% 
+% beginLine = xline(200, '--', {'Animation begin'});
+% beginLine.LabelHorizontalAlignment = 'left';
+% xline(350, '--', {'Animation end'});
+% 
+% legend(string(ylab1), string(ylab2));
+% 
+% set(fig, 'Units', 'Inches');
+% pos = get(fig, 'Position');
+% 
+% set(fig, 'PaperPositionMode', 'Auto', 'PaperUnits', 'Inches', 'PaperSize', [pos(3), pos(4)]);
+
+
+function processAndPrint(inputFileName)
+    data = readtable(inputFileName);
+    xlab = data.Properties.VariableDescriptions(1);
+    ylab1 = data.Properties.VariableDescriptions(2);
+    ylab2 = data.Properties.VariableDescriptions(3);
+    titleString = data.Properties.VariableDescriptions(4);
+    
+    frameNr = data{10:end, "FrameNr_"};
+    computeTimes = data{10:end, "Compute"};
+    primaryRayTime = data{10:end, "PrimaryRayTrace"};
+    
+    fig = figure;
+    plot(frameNr, [computeTimes, primaryRayTime]);
+    set(fig, 'units', 'points', 'position', [500, 500, 700, 350]);
+    titleStringWithSpaces = strrep(titleString, "_", " ");
+    title(titleStringWithSpaces);
+    
+    xlabel(xlab);
+    ylabel('Time (ms)');
+    
+    beginLine = xline(200, '--', {'Animation begin'});
+    beginLine.LabelHorizontalAlignment = 'left';
+    xline(350, '--', {'Animation end'});
+    
+    legend(string(ylab1), string(ylab2));
+    
+    set(fig, 'Units', 'Inches');
+    pos = get(fig, 'Position');
+    
+    set(fig, 'PaperPositionMode', 'Auto', 'PaperUnits', 'Inches', 'PaperSize', [pos(3), pos(4)]);
+    
+    fileName = "../report/Figures/" + titleString + ".pdf";
+    print(fig, fileName, '-dpdf', '-r0');
+end

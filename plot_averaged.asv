@@ -1,0 +1,70 @@
+path_directory = 'timings';
+files = dir(path_directory);
+dirFlags = [files.isdir];
+subFolders = files(dirFlags);
+subFolderNames = {subFolders(3:end).name};
+
+for i=1:length(subFolderNames)
+    ProcessFolder(subFolderNames{i}, path_directory);
+end
+
+function ProcessFolder(folderName, basePath)
+    original_files = dir([basePath '/' folderName '/*.csv']);
+
+    inputFileName = [basePath '/' folderName '/' original_files(1).name];
+    data = readtable(inputFileName);
+    xlab = data.Properties.VariableDescriptions(1);
+    ylab1 = data.Properties.VariableDescriptions(2);
+    ylab2 = data.Properties.VariableDescriptions(3);
+    titleString = folderName + "_(" + length(original_files) + "_Runs)";
+
+    computeTimesAcc = zeros(592, 1);
+    size(computeTimesAcc)
+    primaryRayTimesAcc = zeros(592, 1);
+
+    for i=1:length(original_files)
+        inputFileName = [basePath '/' folderName '/' original_files(i).name];
+        data = readtable(inputFileName);
+        frameNrs = data{10:end, "FrameNr_"};
+
+        computeTimes = data{10:end, "Compute"};
+        computeTimesAcc = computeTimesAcc + computeTimes;
+        
+        primaryRayTimes = data{10:end, "PrimaryRayTrace"};
+        primaryRayTimesAcc = primaryRayTimesAcc + primaryRayTimes;
+    end
+
+    computeTimesAveraged = computeTimesAcc / length(original_files);
+    primaryRayTimesAveraged = primaryRayTimesAcc / length(original_files);
+
+    PlotTimings(frameNrs, computeTimesAveraged, primaryRayTimesAveraged, ...
+        xlab, ylab1, ylab2, titleString);
+end
+
+function PlotTimings(frameNrs, computeTimes, primaryRayTimes, xlab, ylab1, ...
+    ylab2, titleString)
+    %Plotting
+    fig = figure;
+    plot(frameNrs, [computeTimes, primaryRayTimes]);
+    set(fig, 'units', 'points', 'position', [500, 500, 700, 350]);
+    titleStringWithSpaces = strrep(titleString, "_", " ");
+    title(titleStringWithSpaces);
+    
+    xlabel(xlab);
+    ylabel('Time (ms)');
+    
+    beginLine = xline(200, '--', {'Animation begin'});
+    beginLine.LabelHorizontalAlignment = 'left';
+    xline(350, '--', {'Animation end'});
+    
+    legend(string(ylab1), string(ylab2));
+    
+    set(fig, 'Units', 'Inches');
+    pos = get(fig, 'Position');
+    
+    set(fig, 'PaperPositionMode', 'Auto', 'PaperUnits', 'Inches', ...
+        'PaperSize', [pos(3), pos(4)]);
+    
+    fileName = "../report/Figures/" + titleString + ".pdf";
+    print(fig, fileName, '-dpdf', '-r0');
+end
