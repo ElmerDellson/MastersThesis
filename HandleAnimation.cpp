@@ -50,12 +50,9 @@ void Thesis::HandleAnimation(bool runBenchmark)
 			}
 
 			m_instances[0].second = XMMatrixScaling(.6f, 3.f, 2.0f) * XMMatrixTranslation(m_doorPosition[0], m_doorPosition[1], m_doorPosition[2]);
-		}
-			
+		}	
 	}
 
 	m_instances[m_instances.size() - 1].second = XMMatrixScaling(10.f, 10.f, 10.f)
 		* XMMatrixTranslation(m_lightPos[0], m_lightPos[1], m_lightPos[2]);
-
-
 }

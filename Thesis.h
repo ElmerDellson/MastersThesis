@@ -348,7 +348,7 @@ private:
 	bool m_useAdvancedLighting{ true };
 	bool m_useProbeLighting{ true };
 	bool m_useShadows{}; //< Set in SetSettings().
-	bool m_animate{ false };
+	bool m_animate{ true };
 	bool m_updateProbes{ true };
 	bool m_movingLight{ false };
 	bool m_useOctagonalProbes{ true };
