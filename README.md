@@ -3,13 +3,13 @@ This is the public repository for my Master's Thesis project: Dynamic Diffuse Gl
 
 ## Demo Controls
 
-Right-click and move mouse: Look around
-Left-click and move mouse: Orbit
+Right-click and move mouse: Look around  
+Left-click and move mouse: Orbit  
 
-`P`: Toggle probe lighting
-`L`: Toggle primary lighting
-`S`: Toggle shadows
-`Q`: Increase brightness of probe lighting contribution
-`W`: Decrease brightness of probe lighting contribution
-
+`P`: Toggle probe lighting  
+`L`: Toggle primary lighting  
+`S`: Toggle shadows  
+`Q`: Increase brightness of probe lighting contribution  
+`W`: Decrease brightness of probe lighting contribution  
+  
 Arrow keys: Move light source around
